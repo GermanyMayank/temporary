@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#a3201b">
+<title>Temporary</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23a3201b'/%3E%3Ccircle cx='10' cy='10' r='2.6' fill='%23e3a21a'/%3E%3Ccircle cx='22' cy='10' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='2.6' fill='%23e3a21a'/%3E%3Ccircle cx='10' cy='22' r='2.6' fill='%23fff'/%3E%3Ccircle cx='22' cy='22' r='2.6' fill='%23e3a21a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="bandhani" aria-hidden="true"></div>
+  <div class="bar">
+    <h1>Temporary</h1>
+    <div class="actions" id="chatActions" hidden>
+      <button type="button" id="clearBtn" class="ghost">Clear room</button>
+      <button type="button" id="lockBtn" class="ghost">Lock</button>
+    </div>
+  </div>
+</header>
+
+<!-- Lock screen -->
+<section id="lockView" class="panel" hidden>
+  <h2>Enter the room password</h2>
+  <p class="hint">Ask the person who sent you here for it.</p>
+  <label for="pw">Password</label>
+  <input id="pw" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false">
+  <label for="myName">Your name</label>
+  <input id="myName" type="text" autocomplete="nickname" maxlength="30" placeholder="So the other person knows who wrote">
+  <button type="button" id="unlockBtn" class="primary">Open room</button>
+  <p class="msg" id="lockMsg" role="status"></p>
+  <button type="button" id="toSetup" class="link">Set up the room or change the password</button>
+</section>
+
+<!-- Owner setup -->
+<section id="setupView" class="panel" hidden>
+  <h2>Set up the room</h2>
+  <p class="hint">Only for the owner. Setting a new password also clears all messages.</p>
+  <label for="setToken">GitHub key for temporary-data</label>
+  <input id="setToken" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…">
+  <label for="setPw">New room password</label>
+  <input id="setPw" type="password" autocomplete="new-password" spellcheck="false" placeholder="At least 12 characters, e.g. three words">
+  <label for="setPw2">Repeat password</label>
+  <input id="setPw2" type="password" autocomplete="new-password" spellcheck="false">
+  <button type="button" id="setupBtn" class="primary">Save and open room</button>
+  <p class="msg" id="setupMsg" role="status"></p>
+  <button type="button" id="toLock" class="link">Back</button>
+</section>
+
+<!-- Chat -->
+<main id="chatView" hidden>
+  <p class="banner" id="banner" role="status" hidden></p>
+  <ol id="list" class="list" aria-live="polite"></ol>
+  <p class="empty" id="empty">Nothing here yet. Paste text, drop a file, or type below.</p>
+</main>
+<footer id="composer" class="composer" hidden>
+  <input id="fileIn" type="file" multiple hidden>
+  <button type="button" id="attachBtn" class="icon" aria-label="Add files" title="Add files">+</button>
+  <textarea id="text" rows="1" placeholder="Write or paste…" aria-label="Message"></textarea>
+  <button type="button" id="sendBtn" class="send">Send</button>
+</footer>
+<div id="drop" class="drop" hidden>Drop to send</div>
+<script src="app.js"></script>
+</body>
+</html>
